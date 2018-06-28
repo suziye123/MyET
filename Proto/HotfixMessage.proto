@@ -1,9 +1,18 @@
 
 #region Client-Map
-
+message Actor_GamerReady_Ntt // IActorMessage
+{
+    required ushort ChairId = 1;
+}
 #endregion
 
 #region Map-Client
+
+message Actor_GamerStart_Ntt // IActorMessage
+{
+  
+}
+
 message Actor_GamerExitRoom_Ntt // IActorMessage
 {
     required long UserID = 1;

@@ -29,8 +29,8 @@ namespace ETHotfix
 			{
 				case IFrameMessage iFrameMessage: // 如果是帧消息，构造成OneFrameMessage发给对应的unit
 				{
-					long unitId = session.GetComponent<SessionPlayerComponent>().Player.UnitId;
-					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
+				    long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
+                    ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 	
 					// 这里设置了帧消息的id，防止客户端伪造
 					iFrameMessage.Id = unitId;
@@ -45,7 +45,7 @@ namespace ETHotfix
 				}
 				case IActorRequest iActorRequest: // gate session收到actor rpc消息，先向actor 发送rpc请求，再将请求结果返回客户端
 				{
-					long unitId = session.GetComponent<SessionPlayerComponent>().Player.UnitId;
+					long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
 					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 	
 					int rpcId = iActorRequest.RpcId; // 这里要保存客户端的rpcId
@@ -57,7 +57,7 @@ namespace ETHotfix
 				}
 				case IActorMessage iActorMessage: // gate session收到actor消息直接转发给actor自己去处理
 				{
-					long unitId = session.GetComponent<SessionPlayerComponent>().Player.UnitId;
+					long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
 					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 					actorMessageSender.Send(iActorMessage);
 					return;

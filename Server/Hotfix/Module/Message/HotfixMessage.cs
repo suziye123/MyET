@@ -4,6 +4,33 @@ using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 namespace ETHotfix
 {
+	[Message(HotfixOpcode.Actor_GamerReady_Ntt)]
+	[ProtoContract]
+	public partial class Actor_GamerReady_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+	}
+
+	[Message(HotfixOpcode.Actor_GamerStart_Ntt)]
+	[ProtoContract]
+	public partial class Actor_GamerStart_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+	}
+
 	[Message(HotfixOpcode.Actor_GamerExitRoom_Ntt)]
 	[ProtoContract]
 	public partial class Actor_GamerExitRoom_Ntt: IActorMessage

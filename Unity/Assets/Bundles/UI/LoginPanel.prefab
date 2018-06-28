@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 222036487078706630}
   - component: {fileID: 114501621295207644}
   - component: {fileID: 114942112416966566}
-  - component: {fileID: 114164264920884988}
   - component: {fileID: 114712865634943460}
   m_Layer: 5
   m_Name: LoginPanel
@@ -383,18 +382,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114164264920884988
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633841459367812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8347f75bbf20473292de676504ad7398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasName: LoginCanvas
 --- !u!114 &114205998266108182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -851,7 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdd0efe5087d5a4e843fd77222299bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WindowLayer: Medium
+  WindowLayer: Bottom
 --- !u!114 &114735954912298894
 MonoBehaviour:
   m_ObjectHideFlags: 1

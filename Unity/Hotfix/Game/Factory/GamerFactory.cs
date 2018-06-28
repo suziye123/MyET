@@ -14,7 +14,7 @@ namespace ETHotfix
             gamer.UserID = userId;
             gamer.IsReady = IsReady;
             gamer.AddComponent<GamerUIComponent>();
-
+            gamer.AddComponent<HandCardComponent>();
             return gamer;
         }
 
@@ -24,7 +24,7 @@ namespace ETHotfix
             gamer.ChairId = ChairId;
             gamer.IsReady = IsReady;
             gamer.AddComponent<GamerUIComponent>();
-
+            gamer.AddComponent<HandCardComponent>();
             return gamer;
         }
     }

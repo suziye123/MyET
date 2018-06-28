@@ -18,13 +18,21 @@ namespace ETHotfix
 
                 //从房间移除掉线的玩家
                 //TODO  后续做断线重连需要重新改
-                //Game.Scene.GetComponent<RoomComponent>().CheckAndDestoryRoom(self.User.RoomID, self.User.UserID);
 
                 //移除在房间的玩家
                 if (self.User.ActorID != 0)
                 {
                     ActorMessageSender actorProxy = actorProxyComponent.Get(self.User.ActorID);
                     await actorProxy.Call(new Actor_PlayerExitRoom_Req() { UserID = self.User.UserID });
+                }
+
+                Room room = RoomHelp.GetRoom(self.User.RoomID);
+                if (room.State == RoomState.Idle)
+                {
+                    if (room.Count==0)
+                    {
+                        room.Dispose();
+                    }
                 }
                 //正在匹配中发送玩家退出匹配请求
                 //if (self.User.IsMatching)

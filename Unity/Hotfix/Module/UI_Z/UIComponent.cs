@@ -189,8 +189,8 @@ namespace ETHotfix
 
             if (ui == null)
 	        {
-	            //说明不存在此UI面板 需要创建
-	            Create(type);
+                //说明不存在此UI面板 需要创建
+	            ui = Create(type);
 	        }
 	        else
 	        {

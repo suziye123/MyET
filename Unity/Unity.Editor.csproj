@@ -348,6 +348,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\AtlasCreate.cs" />
     <Compile Include="Assets\Editor\BehaviorTreeEditor\BehaviorNodeConfigExtension.cs" />
     <Compile Include="Assets\Editor\BehaviorTreeEditor\BehaviorNodeData.cs" />
     <Compile Include="Assets\Editor\BehaviorTreeEditor\BehaviorTreeConfigEditor.cs" />
@@ -393,6 +394,7 @@
     <Compile Include="Assets\Editor\LogRedirection.cs" />
     <Compile Include="Assets\Editor\Proto2CsEditor\Proto2CSEditor.cs" />
     <Compile Include="Assets\Editor\ReferenceCollectorEditor\ReferenceCollectorEditor.cs" />
+    <Compile Include="Assets\Editor\ReferenceCollectorEditor\UIPanelConfigEditor.cs" />
     <Compile Include="Assets\Editor\RsyncEditor\RsyncConfig.cs" />
     <Compile Include="Assets\Editor\RsyncEditor\RsyncEditor.cs" />
     <Compile Include="Assets\Editor\ServerCommandLineEditor\ServerCommandLineEditor.cs" />

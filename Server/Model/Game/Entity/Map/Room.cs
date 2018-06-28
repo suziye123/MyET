@@ -45,6 +45,7 @@ namespace ETModel
 
         public override void Dispose()
         {
+            Log.Info($"{this.RoomId}房间没人啦,释放了！！");
             if (this.IsDisposed)
             {
                 return;

@@ -38,6 +38,16 @@ namespace ETHotfix
 
             return room.gamers[room.seats[id]];
         }
+        /// <summary>
+        /// 根据椅子号获取玩家
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="ChairId"></param>
+        /// <returns></returns>
+        public static Gamer Get(this Room room, ushort ChairId)
+        {
+            return room.gamers[ChairId];
+        }
 
         /// <summary>
         /// 删除玩家

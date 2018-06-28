@@ -19,6 +19,7 @@ namespace ETHotfix
             };
             room.roomConfig = config;
             await room.AddComponent<MailBoxComponent>().AddLocation();
+            room.AddComponent<GameControllerComponent, RoomConfig>(config);
             Game.Scene.GetComponent<RoomComponent>().Add(room);
             client.GetUser().RoomID = room.RoomId;
             Log.Info($"创建房间{room.Id}");

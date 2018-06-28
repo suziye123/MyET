@@ -367,7 +367,6 @@ GameObject:
   - component: {fileID: 222306052443284050}
   - component: {fileID: 114966927283737416}
   - component: {fileID: 114987068684066364}
-  - component: {fileID: 114371399756063330}
   - component: {fileID: 114545974284141138}
   m_Layer: 5
   m_Name: LobbyPanel
@@ -596,18 +595,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u52A0\u5165\u623F\u95F4"
---- !u!114 &114371399756063330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795398742459254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8347f75bbf20473292de676504ad7398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasName: LobbyCanvas
 --- !u!114 &114435183174832022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -772,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdd0efe5087d5a4e843fd77222299bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WindowLayer: Medium
+  WindowLayer: Bottom
 --- !u!114 &114568152370591990
 MonoBehaviour:
   m_ObjectHideFlags: 1
