@@ -99,6 +99,9 @@ public class ReferenceCollector: MonoBehaviour, ISerializationCallbackReceiver
 	}
 #endif
 
+    
+
+
 	public T Get<T>(string key) where T : class
 	{
 		Object dictGo;

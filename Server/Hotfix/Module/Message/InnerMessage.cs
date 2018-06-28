@@ -4,9 +4,171 @@ using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 namespace ETHotfix
 {
-/// <summary>
-/// 传送unit
-/// </summary>
+	[Message(InnerOpcode.Actor_PlayerEnterRoom_Ntt)]
+	[ProtoContract]
+	public partial class Actor_PlayerEnterRoom_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long PlayerID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(3, IsRequired = true)]
+		public long SessionID;
+
+	}
+
+	[Message(InnerOpcode.Actor_PlayerExitRoom_Req)]
+	[ProtoContract]
+	public partial class Actor_PlayerExitRoom_Req: IActorRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.Actor_PlayerExitRoom_Ack)]
+	[ProtoContract]
+	public partial class Actor_PlayerExitRoom_Ack: IActorResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_PlayerOnline_Req)]
+	[ProtoContract]
+	public partial class G2R_PlayerOnline_Req: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+		[ProtoMember(2, IsRequired = true)]
+		public int GateAppID;
+
+	}
+
+	[Message(InnerOpcode.R2G_PlayerOnline_Ack)]
+	[ProtoContract]
+	public partial class R2G_PlayerOnline_Ack: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_PlayerOffline_Req)]
+	[ProtoContract]
+	public partial class G2R_PlayerOffline_Req: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.R2G_PlayerOffline_Ack)]
+	[ProtoContract]
+	public partial class R2G_PlayerOffline_Ack: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2G_GetLoginKey_Req)]
+	[ProtoContract]
+	public partial class R2G_GetLoginKey_Req: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.G2R_GetLoginKey_Ack)]
+	[ProtoContract]
+	public partial class G2R_GetLoginKey_Ack: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long Key;
+
+	}
+
+	[Message(InnerOpcode.R2G_PlayerKickOut_Req)]
+	[ProtoContract]
+	public partial class R2G_PlayerKickOut_Req: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public long UserID;
+
+	}
+
+	[Message(InnerOpcode.G2R_PlayerKickOut_Ack)]
+	[ProtoContract]
+	public partial class G2R_PlayerKickOut_Ack: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
+
+	}
+
 	[Message(InnerOpcode.M2M_TrasferUnitRequest)]
 	[ProtoContract]
 	public partial class M2M_TrasferUnitRequest: IRequest

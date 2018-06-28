@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>Hotfix</AssemblyName>
     <RootNamespace>ETHotfix</RootNamespace>
   </PropertyGroup>
@@ -24,6 +24,7 @@
     <ProjectReference Include="..\Model\Server.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Game\Handler\Match\" />
     <Folder Include="Module\Http\" />
   </ItemGroup>
 </Project>

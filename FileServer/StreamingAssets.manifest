@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 571746344
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: code.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: config.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: uilogin.unity3d
+      Dependencies: {}
+    Info_3:
+      Name: unit.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: uilobby.unity3d
+      Dependencies: {}
+    Info_5:
+      Name: loginpanel.unity3d
+      Dependencies: {}
+    Info_6:
+      Name: lobbypanel.unity3d
+      Dependencies: {}
+    Info_7:
+      Name: roompanel.unity3d
+      Dependencies: {}

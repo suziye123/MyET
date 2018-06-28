@@ -20,13 +20,13 @@ namespace ETModel
 			return BitConverter.ToInt64(bytes, 0);
 		}
 
-		/// <summary>
-		/// 获取lower与Upper之间的随机数
-		/// </summary>
-		/// <param name="lower"></param>
-		/// <param name="upper"></param>
-		/// <returns></returns>
-		public static int RandomNumber(int lower, int upper)
+        /// <summary>
+        /// 获取lower与Upper之间的随机数
+        /// </summary>
+        /// <param name="lower"></param>
+        /// <param name="upper"></param>
+        /// <returns></returns>
+        public static int RandomNumber(int lower, int upper)
 		{
 			int value = random.Next(lower, upper);
 			return value;

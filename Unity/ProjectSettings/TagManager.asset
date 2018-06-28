@@ -14,11 +14,11 @@ TagManager:
   - 
   - 
   - Map
-  - 
-  - 
-  - 
-  - 
-  - 
+  - UIHiden
+  - Bottom
+  - Medium
+  - Top
+  - TopMost
   - 
   - 
   - 

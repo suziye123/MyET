@@ -23,10 +23,10 @@ namespace ETModel
 				Game.Scene.AddComponent<GlobalConfigComponent>();
 				Game.Scene.AddComponent<NetOuterComponent>();
 				Game.Scene.AddComponent<ResourcesComponent>();
-				Game.Scene.AddComponent<BehaviorTreeComponent>();
-				Game.Scene.AddComponent<PlayerComponent>();
-				Game.Scene.AddComponent<UnitComponent>();
-				Game.Scene.AddComponent<ClientFrameComponent>();
+				//Game.Scene.AddComponent<BehaviorTreeComponent>();
+				//Game.Scene.AddComponent<PlayerComponent>();
+				//Game.Scene.AddComponent<UnitComponent>();
+				//Game.Scene.AddComponent<ClientFrameComponent>();
 				Game.Scene.AddComponent<UIComponent>();
 
 				// 下载ab包
@@ -35,9 +35,9 @@ namespace ETModel
 				Game.Hotfix.LoadHotfixAssembly();
 
 				// 加载配置
-				Game.Scene.GetComponent<ResourcesComponent>().LoadBundle("config.unity3d");
-				Game.Scene.AddComponent<ConfigComponent>();
-				Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle("config.unity3d");
+				//Game.Scene.GetComponent<ResourcesComponent>().LoadBundle("config.unity3d");
+				//Game.Scene.AddComponent<ConfigComponent>();
+				//Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle("config.unity3d");
 				Game.Scene.AddComponent<OpcodeTypeComponent>();
 				Game.Scene.AddComponent<MessageDispatherComponent>();
 

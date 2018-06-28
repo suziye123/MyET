@@ -95,9 +95,20 @@ namespace App
 						Game.Scene.AddComponent<RealmGateAddressComponent>();
 						Game.Scene.AddComponent<GateSessionKeyComponent>();
 						Game.Scene.AddComponent<ConfigComponent>();
-						Game.Scene.AddComponent<ServerFrameComponent>();
-						// Game.Scene.AddComponent<HttpComponent>();
-						break;
+                        //Game.Scene.AddComponent<ServerFrameComponent>();
+                        // Game.Scene.AddComponent<HttpComponent>();
+
+                        //以下是自定义全局组件
+
+					    Game.Scene.AddComponent<UserComponent>();
+					    Game.Scene.AddComponent<GameGateSessionKeyComponent>();
+
+                        //Map
+					    Game.Scene.AddComponent<RoomComponent>();
+
+                        //RealmGlobalComponent
+                        Game.Scene.AddComponent<OnlineComponent>();
+                        break;
 					case AppType.Benchmark:
 						Game.Scene.AddComponent<NetOuterComponent>();
 						Game.Scene.AddComponent<BenchmarkComponent, IPEndPoint>(clientConfig.IPEndPoint);

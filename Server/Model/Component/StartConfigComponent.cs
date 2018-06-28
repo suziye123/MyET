@@ -26,6 +26,8 @@ namespace ETModel
 
 		public StartConfig LocationConfig { get; private set; }
 
+        public StartConfig GameConfig { get; private set; }
+
 		public List<StartConfig> MapConfigs { get; private set; }
 
 		public List<StartConfig> GateConfigs { get; private set; }
@@ -64,7 +66,12 @@ namespace ETModel
 						this.DBConfig = startConfig;
 					}
 
-					if (startConfig.AppType.Is(AppType.Map))
+				    if (startConfig.AppType.Is(AppType.Game))
+				    {
+				        this.GameConfig = startConfig;
+				    }
+
+                    if (startConfig.AppType.Is(AppType.Map))
 					{
 						this.MapConfigs.Add(startConfig);
 					}

@@ -1,3 +1,80 @@
+
+#region Client-Map
+
+#endregion
+
+#region Map-Client
+message Actor_GamerExitRoom_Ntt // IActorMessage
+{
+    required long UserID = 1;
+    required ushort ChairId = 2;
+}
+message Actor_GamerEnterRoom_Ntt // IActorMessage
+{
+	repeated GamerInfo users = 1;
+}
+message GamerInfo
+{
+	required string NickName = 1;
+    required int Wins = 2;
+    required int Loses = 3;
+    required long Money = 4;
+    required ushort ChairID = 5;
+}
+#endregion
+#region Lobby
+
+message C2G_GetUserInfo //IRequest
+{
+	required long UserID = 1;
+}
+
+message G2C_GetUserInfo //IResponse
+{
+	required string NickName = 1;
+    required int Wins = 2;
+    required int Loses = 3;
+    required long Money = 4;
+}
+
+message RoomInfo
+{
+    required byte PlayerCount = 1;
+	required byte GameCount = 2;
+	required int GameScore = 3;
+}
+
+message C2G_CreateRoom //IRequest
+{
+	required RoomInfo Room = 2;	
+}
+
+message G2C_CreateRoom //IResponse
+{
+	required int64 	RoomId	    = 1;
+	required RoomInfo Room = 2;
+	required ushort ChairID = 3;
+}
+
+message C2G_JoinRoom //IRequest
+{
+	required int64 	RoomId = 1;
+}
+
+message G2C_JoinRoom //IResponse
+{
+	required int64 	RoomId	    = 1;	//房间ID
+	required RoomInfo Room = 2;	//房间信息
+	required ushort ChairID = 3;
+}
+message C2G_ReturnLobby_Ntt // IMessage
+{
+
+}
+
+#endregion
+
+#region Login
 message C2R_Login // IRequest
 {
 	required string	Account	 = 1;	// 帐号
@@ -10,6 +87,16 @@ message R2C_Login // IResponse
 	required int64 	Key	    = 2;
 }
 
+message C2R_Register // IRequest
+{
+	required string	Account	 = 1;	// 帐号
+	required string	Password = 2;	// 密码
+}
+
+message R2C_Register // IResponse
+{
+}
+
 message C2G_LoginGate // IRequest
 {
 	required int64 Key = 1;	// 帐号
@@ -17,9 +104,10 @@ message C2G_LoginGate // IRequest
 
 message G2C_LoginGate // IResponse
 {
-	required int64 PlayerId = 1;
+	required long PlayerID = 1;
+    required long UserID = 2;
 }
-
+#endregion
 message G2C_TestHotfixMessage // IMessage
 {
 	required string Info = 1;
@@ -35,15 +123,3 @@ message M2C_TestActorResponse // IActorResponse
 	required string Info = 1;
 }
 
-message PlayerInfo // IMessage
-{
-}
-
-message C2G_PlayerInfo // IRequest
-{
-}
-
-message G2C_PlayerInfo // IResponse
-{
-	repeated PlayerInfo PlayerInfos = 1;
-}
