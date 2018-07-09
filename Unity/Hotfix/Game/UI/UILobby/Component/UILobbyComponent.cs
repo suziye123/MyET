@@ -140,7 +140,7 @@ namespace ETHotfix
 	            config.GameScore = g2c_JoinRoom.Room.GameScore;
 
 	            GameTools.GetUser().ChairId = g2c_JoinRoom.ChairID;
-
+                Log.Debug($"自己的座位号:{g2c_JoinRoom.ChairID}");
 	            RoomComponent roomComponent = Game.Scene.GetComponent<RoomComponent>();
 
 	            if (roomComponent == null)

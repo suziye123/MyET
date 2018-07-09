@@ -27,13 +27,14 @@ namespace ETHotfix
                 }
 
                 Room room = RoomHelp.GetRoom(self.User.RoomID);
-                if (room.State == RoomState.Idle)
+                if (room?.State == RoomState.Idle)
                 {
-                    if (room.Count==0)
+                    if (room.Count == 0)
                     {
                         room.Dispose();
                     }
                 }
+
                 //正在匹配中发送玩家退出匹配请求
                 //if (self.User.IsMatching)
                 //{

@@ -56,6 +56,71 @@ namespace ETHotfix
             this.txt_Score.text = this.GetParent<Gamer>().Money.ToString();
             this.txt_Name.text = this.GetParent<Gamer>().NickName;
         }
+        /// <summary>
+        /// 更新分数
+        /// </summary>
+        /// <param name="Score"></param>
+        public void UpdateScore(int Score)
+        {
+            this.txt_Score.text = $"{Score}";
+        }
+        /// <summary>
+        /// 显示金币面板
+        /// </summary>
+        /// <param name="Gold"></param>
+        public void ShowGoldBg(int Gold)
+        {
+            obj_GoldBg.SetActive(true);
+            txt_XiaZhu.text = $"{Gold}";
+        }
+        /// <summary>
+        /// 显示庄
+        /// </summary>
+        public void ShowBanker()
+        {
+            this.img_Zhuang.gameObject.SetActive(true);
+        }
+        /// <summary>
+        /// 隐藏庄
+        /// </summary>
+        public void HideBanker()
+        {
+            this.img_Zhuang.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// 显示抢庄
+        /// </summary>
+        /// <param name="BankerNumber"></param>
+        public void ShowRobBanker(byte BankerNumber)
+        {
+            //显示抢庄
+            img_Rob.gameObject.SetActive(true);
+            if (BankerNumber==0)
+            {
+                img_Rob.sprite = AltasHelp.GetFontAltas().Get<Sprite>($"W_buqiang");
+            }
+            else
+            {
+                img_Rob.sprite = AltasHelp.GetFontAltas().Get<Sprite>($"W_qiang_{BankerNumber}");
+            }
+        }
+        /// <summary>
+        /// 隐藏抢庄显示
+        /// </summary>
+        public void HideRobBanker()
+        {
+            img_Rob.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// 隐藏金币面板
+        /// </summary>
+        /// <param name="Gold"></param>
+        public void HideGoldBg()
+        {
+            obj_GoldBg.SetActive(false);
+        }
 
         /// <summary>
         /// 重置面板

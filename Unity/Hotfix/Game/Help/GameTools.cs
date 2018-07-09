@@ -35,6 +35,21 @@ namespace ETHotfix
             return Game.Scene.GetComponent<RoomComponent>().room;
         }
 
+        public static UIRoom_Component GetRoomComponent()
+        {
+            return Game.Scene.GetComponent<UIComponent>().Get(UIType.UIRoom).GetComponent<UIRoom_Component>();
+        }
+
+        public static Gamer GetOtherUser(ushort chairId)
+        {
+            return Game.Scene.GetComponent<GameDataComponent>().GetUser(chairId);
+        }
+
+        public static bool IsSelf(ushort chairId)
+        {
+            return GetUser().ChairId == chairId;
+        }
+
         /// <summary>
         /// 座位转视图
         /// </summary>

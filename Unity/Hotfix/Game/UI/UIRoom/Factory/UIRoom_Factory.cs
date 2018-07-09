@@ -25,9 +25,15 @@ namespace ETHotfix
                 //加载扑克图集
                 resourcesComponent.LoadBundle($"{AltasType.PukeAltas}.unity3d");
                 GameObject AltasGameObject = (GameObject)resourcesComponent.GetAsset($"{AltasType.PukeAltas}.unity3d", $"{AltasType.PukeAltas}");
-                GameObject Altas = UnityEngine.Object.Instantiate(bundleGameObject, altasComponent.ParentAltas.transform);
+                GameObject Altas = UnityEngine.Object.Instantiate(AltasGameObject, altasComponent.ParentAltas.transform);
                 altasComponent.AddAltas(AltasType.PukeAltas, Altas);
 
+
+                //加载字体图集
+                resourcesComponent.LoadBundle($"{AltasType.FontAltas}.unity3d");
+                GameObject FontAltasGameObject = (GameObject)resourcesComponent.GetAsset($"{AltasType.FontAltas}.unity3d", $"{AltasType.FontAltas}");
+                GameObject FontAltas = UnityEngine.Object.Instantiate(FontAltasGameObject, altasComponent.ParentAltas.transform);
+                altasComponent.AddAltas(AltasType.FontAltas, FontAltas);
 
                 return ui;
             }
@@ -40,6 +46,8 @@ namespace ETHotfix
         public void Remove(string type)
         {
             ETModel.Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"{type}.unity3d");
+            ETModel.Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"{AltasType.PukeAltas}.unity3d");
+            ETModel.Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"{AltasType.FontAltas}.unity3d");
         }
     }
 }

@@ -71,7 +71,7 @@ namespace ETHotfix
         /// <returns></returns>
         public GameObject Get(string AltasName)
         {
-            if (this.TexNameObjDic.ContainsKey(AltasName))
+            if (!this.TexNameObjDic.ContainsKey(AltasName))
             {
                 return null;
             }

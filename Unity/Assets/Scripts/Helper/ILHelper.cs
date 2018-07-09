@@ -25,8 +25,15 @@ namespace ETModel
 			appDomain.DelegateManager.RegisterMethodDelegate<Session, Packet>();
 			appDomain.DelegateManager.RegisterMethodDelegate<Session>();
 			appDomain.DelegateManager.RegisterMethodDelegate<ILTypeInstance>();
+		    appDomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) =>
+		    {
+		        return new UnityEngine.Events.UnityAction(() =>
+		        {
+		            ((Action)act)();
+		        });
+		    });
 
-			CLRBindings.Initialize(appDomain);
+            CLRBindings.Initialize(appDomain);
 
 			// 注册适配器
 			Assembly assembly = typeof(Init).Assembly;

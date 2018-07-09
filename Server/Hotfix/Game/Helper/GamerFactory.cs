@@ -16,6 +16,8 @@ namespace ETHotfix
             gamer.PlayerID = playerId;
             gamer.RoomID = RoomId;
             gamer.uChairID = ChairId;
+
+            gamer.AddComponent<HandCardsComponent>();
             return gamer;
         }
     }

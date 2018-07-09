@@ -88,10 +88,12 @@ namespace ETHotfix
                 }
                 ushort ViewId = info.Key.ToView();
                 this.PlayerObj[ViewId].SetActive(true);
-                info.Value.GetComponent<GamerUIComponent>().SetPanel(this.PlayerObj[ViewId]);
+                info.Value.GetComponent<GamerUIComponent>().SetPanel(PlayerObj[ViewId]);
+                info.Value.GetComponent<HandCardComponent>().SetPanel(PlayerPukes[ViewId]);
             }
             PlayerObj[0].SetActive(true);
             GameData.MySelf.GetComponent<GamerUIComponent>().SetPanel(PlayerObj[0]);
+            GameData.MySelf.GetComponent<HandCardComponent>().SetPanel(PlayerPukes[0]);
         }
         /// <summary>
         /// 返回大厅
@@ -102,6 +104,7 @@ namespace ETHotfix
             {
                 SessionComponent.Instance.Session.Send(new C2G_ReturnLobby_Ntt());
                 GameTools.GetUser().ChairId = 255;
+                Game.Scene.GetComponent<GameDataComponent>().UserInfos.Clear();
                 Game.Scene.GetComponent<UIComponent>().Remove(UIType.UIRoom);
                 Game.Scene.GetComponent<UIComponent>().CreateOrShow(UIType.UILobby);
             }
@@ -149,6 +152,7 @@ namespace ETHotfix
 
         public override void Show()
         {
+            UpdateView();
             base.Show();
         }
 
@@ -160,6 +164,7 @@ namespace ETHotfix
             }
             base.Dispose();
             PlayerObj.Clear();
+            PlayerPukes.Clear();
             btn_ReturnLobby.onClick.RemoveAllListeners();
             btn_ReturnLobby = null;
             //Game.Scene.GetComponent<GameDataComponent>().RemoveAll();

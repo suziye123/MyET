@@ -48,7 +48,7 @@ namespace ETHotfix
                     GameScore = room.roomConfig.GameScore
                 };
                 response.RoomId = room.RoomId;
-                response.ChairID = (ushort)(room.Count);
+                response.ChairID = room.GetNullChair();
                 reply(response);
                 Log.Info("成功申请加入房间！！！");
 

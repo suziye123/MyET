@@ -20,6 +20,14 @@ namespace ETHotfix
         {
             return Game.Scene.GetComponent<AltasComponent>().Get($"{AltasType.PukeAltas}");
         }
+        /// <summary>
+        /// 得到字体图片的图集
+        /// </summary>
+        /// <returns></returns>
+        public static GameObject GetFontAltas()
+        {
+            return Game.Scene.GetComponent<AltasComponent>().Get($"{AltasType.FontAltas}");
+        }
 
         /// <summary>
         /// 创建图集 图集对应的父物体

@@ -204,10 +204,16 @@
     <Compile Include="Game\Component\RoomComponent.cs" />
     <Compile Include="Game\Entity\Gamer.cs" />
     <Compile Include="Game\Factory\GamerFactory.cs" />
+    <Compile Include="Game\Handler\Room\Actor_BetResult.cs" />
     <Compile Include="Game\Handler\Room\Actor_GamerReady.cs" />
     <Compile Include="Game\Handler\Room\Actor_GamerStart.cs" />
     <Compile Include="Game\Handler\Room\Actor_PlayerEnter.cs" />
     <Compile Include="Game\Handler\Room\Actor_ReturnLobby.cs" />
+    <Compile Include="Game\Handler\Room\Actor_RobBankerResult.cs" />
+    <Compile Include="Game\Handler\Room\Actor_SelectBanker.cs" />
+    <Compile Include="Game\Handler\Room\Actor_SendCard.cs" />
+    <Compile Include="Game\Handler\Room\Actor_ShowHandResult.cs" />
+    <Compile Include="Game\Handler\Room\Actor_StartShowHand.cs" />
     <Compile Include="Game\Help\AltasHelp.cs" />
     <Compile Include="Game\Help\AltasType.cs" />
     <Compile Include="Game\Help\GameTools.cs" />

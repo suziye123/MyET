@@ -34,6 +34,14 @@ namespace ETHotfix
                     gamer.Dispose();
                 }
 
+                if (room.State == RoomState.Idle)
+                {
+                    if (room.Count == 0)
+                    {
+                        room.Dispose();
+                    }
+                }
+
                 reply(response);
             }
             catch (Exception e)

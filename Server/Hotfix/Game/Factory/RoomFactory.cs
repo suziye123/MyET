@@ -22,6 +22,7 @@ namespace ETHotfix
             room.AddComponent<GameControllerComponent, RoomConfig>(config);
             Game.Scene.GetComponent<RoomComponent>().Add(room);
             client.GetUser().RoomID = room.RoomId;
+            room.AddComponent<DeckComponent>();
             Log.Info($"创建房间{room.Id}");
             return room;
         }

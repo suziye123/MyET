@@ -3,26 +3,36 @@ namespace ETHotfix
 	public static partial class HotfixOpcode
 	{
 		 public const ushort Actor_GamerReady_Ntt = 10001;
-		 public const ushort Actor_GamerStart_Ntt = 10002;
-		 public const ushort Actor_GamerExitRoom_Ntt = 10003;
-		 public const ushort Actor_GamerEnterRoom_Ntt = 10004;
-		 public const ushort GamerInfo = 10005;
-		 public const ushort C2G_GetUserInfo = 10006;
-		 public const ushort G2C_GetUserInfo = 10007;
-		 public const ushort RoomInfo = 10008;
-		 public const ushort C2G_CreateRoom = 10009;
-		 public const ushort G2C_CreateRoom = 10010;
-		 public const ushort C2G_JoinRoom = 10011;
-		 public const ushort G2C_JoinRoom = 10012;
-		 public const ushort C2G_ReturnLobby_Ntt = 10013;
-		 public const ushort C2R_Login = 10014;
-		 public const ushort R2C_Login = 10015;
-		 public const ushort C2R_Register = 10016;
-		 public const ushort R2C_Register = 10017;
-		 public const ushort C2G_LoginGate = 10018;
-		 public const ushort G2C_LoginGate = 10019;
-		 public const ushort G2C_TestHotfixMessage = 10020;
-		 public const ushort C2M_TestActorRequest = 10021;
-		 public const ushort M2C_TestActorResponse = 10022;
+		 public const ushort Actor_RobBanker_Ntt = 10002;
+		 public const ushort Actor_GamerBet_Ntt = 10003;
+		 public const ushort Actor_ShowHandCard_Ntt = 10004;
+		 public const ushort Actor_GamerStart_Ntt = 10005;
+		 public const ushort Actor_StartRobBanker_Ntt = 10006;
+		 public const ushort Actor_SendCard_Ntt = 10007;
+		 public const ushort Actor_RobBankerResult_Ntt = 10008;
+		 public const ushort Actor_SelectBanker_Ntt = 10009;
+		 public const ushort Actor_BetResult_Ntt = 10010;
+		 public const ushort Actor_StartShowHand_Ntt = 10011;
+		 public const ushort Actor_ShowHandResult_Ntt = 10012;
+		 public const ushort Actor_GamerExitRoom_Ntt = 10013;
+		 public const ushort Actor_GamerEnterRoom_Ntt = 10014;
+		 public const ushort GamerInfo = 10015;
+		 public const ushort C2G_GetUserInfo = 10016;
+		 public const ushort G2C_GetUserInfo = 10017;
+		 public const ushort RoomInfo = 10018;
+		 public const ushort C2G_CreateRoom = 10019;
+		 public const ushort G2C_CreateRoom = 10020;
+		 public const ushort C2G_JoinRoom = 10021;
+		 public const ushort G2C_JoinRoom = 10022;
+		 public const ushort C2G_ReturnLobby_Ntt = 10023;
+		 public const ushort C2R_Login = 10024;
+		 public const ushort R2C_Login = 10025;
+		 public const ushort C2R_Register = 10026;
+		 public const ushort R2C_Register = 10027;
+		 public const ushort C2G_LoginGate = 10028;
+		 public const ushort G2C_LoginGate = 10029;
+		 public const ushort G2C_TestHotfixMessage = 10030;
+		 public const ushort C2M_TestActorRequest = 10031;
+		 public const ushort M2C_TestActorResponse = 10032;
 	}
 }

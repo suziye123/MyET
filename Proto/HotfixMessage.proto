@@ -1,23 +1,80 @@
 
 #region Client-Map
+//玩家准备
 message Actor_GamerReady_Ntt // IActorMessage
+{
+    required ushort ChairId = 1;
+}
+//抢庄
+message Actor_RobBanker_Ntt // IActorMessage
+{
+    required ushort ChairId = 1;
+    required byte BankerNumber = 2; //0不抢 1-4抢
+}
+//下注
+message Actor_GamerBet_Ntt // IActorMessage
+{
+    required ushort ChairId = 1;
+    required byte BetNumber = 2; //下注
+}
+//摊牌
+message Actor_ShowHandCard_Ntt // IActorMessage
 {
     required ushort ChairId = 1;
 }
 #endregion
 
 #region Map-Client
-
+//游戏开始
 message Actor_GamerStart_Ntt // IActorMessage
 {
   
 }
+//开始抢庄
+message Actor_StartRobBanker_Ntt // IActorMessage
+{
+  	required ushort ChairId = 1;
+}
+//开始发牌
+message Actor_SendCard_Ntt // IActorMessage
+{
+  	required byte[] Cards = 1;
+}
+//抢庄结果
+message Actor_RobBankerResult_Ntt // IActorMessage
+{
+  	required ushort ChairId = 1;
+    required byte BankerNumber = 2; //0不抢 1-4抢
+}
+//指定庄家
+message Actor_SelectBanker_Ntt // IActorMessage
+{
+  	required ushort ChairId = 1;
+}
+//下注结果
+message Actor_BetResult_Ntt // IActorMessage
+{
+  	required ushort ChairId = 1;
+    required byte BetNumber = 2; //下注
+}
+//开始摊牌
+message Actor_StartShowHand_Ntt // IActorMessage
+{
 
+}
+//摊牌结果
+message Actor_ShowHandResult_Ntt // IActorMessage
+{
+	required ushort ChairId = 1;
+	required byte[] Cards = 2;
+}
+//退出房间
 message Actor_GamerExitRoom_Ntt // IActorMessage
 {
     required long UserID = 1;
     required ushort ChairId = 2;
 }
+//玩家进入房间
 message Actor_GamerEnterRoom_Ntt // IActorMessage
 {
 	repeated GamerInfo users = 1;
@@ -32,12 +89,12 @@ message GamerInfo
 }
 #endregion
 #region Lobby
-
+//获取用户信息
 message C2G_GetUserInfo //IRequest
 {
 	required long UserID = 1;
 }
-
+//获取用户信息
 message G2C_GetUserInfo //IResponse
 {
 	required string NickName = 1;
@@ -52,30 +109,31 @@ message RoomInfo
 	required byte GameCount = 2;
 	required int GameScore = 3;
 }
-
+//创建房间
 message C2G_CreateRoom //IRequest
 {
 	required RoomInfo Room = 2;	
 }
-
+//创建房间
 message G2C_CreateRoom //IResponse
 {
 	required int64 	RoomId	    = 1;
 	required RoomInfo Room = 2;
 	required ushort ChairID = 3;
 }
-
+//加入房间
 message C2G_JoinRoom //IRequest
 {
 	required int64 	RoomId = 1;
 }
-
+//加入房间
 message G2C_JoinRoom //IResponse
 {
 	required int64 	RoomId	    = 1;	//房间ID
 	required RoomInfo Room = 2;	//房间信息
 	required ushort ChairID = 3;
 }
+//返回大厅
 message C2G_ReturnLobby_Ntt // IMessage
 {
 

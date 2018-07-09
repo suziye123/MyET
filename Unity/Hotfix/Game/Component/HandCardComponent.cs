@@ -27,6 +27,8 @@ namespace ETHotfix
                 return;
             }
             Panel = panel;
+            Panel.SetActive(true);
+            Pukes.Clear();
             ReferenceCollector rc = this.Panel.GetComponent<ReferenceCollector>();
             for (int i = 1; i <= 5; i++)
             {
@@ -41,17 +43,34 @@ namespace ETHotfix
         /// <param name="cards"></param>
         public void ShowPuke(byte[] cards)
         {
+            SetActive(true);
             for (int i = 0; i < this.Pukes.Count; i++)
             {
                 this.Pukes[i].sprite = GameTools.GetTexSprite(cards[i]);
             }
         }
 
+        
         /// <summary>
-        /// 隐藏所有牌
+        /// 显示扑克
+        /// </summary>
+        /// <param name="IsShow"></param>
+        public void SetActive(bool IsShow)
+        {
+            for (int i = 0; i < this.Pukes.Count; i++)
+            {
+                this.Pukes[i].gameObject.SetActive(IsShow);
+            }
+        }
+
+
+
+        /// <summary>
+        /// 显示所有背牌
         /// </summary>
         public void HideAllPuke()
         {
+            SetActive(true);
             for (int i = 0; i < this.Pukes.Count; i++)
             {
                 this.Pukes[i].sprite = GameTools.GetBackPuke();
@@ -78,7 +97,6 @@ namespace ETHotfix
             }
             base.Dispose();
 
-            Panel.gameObject.SetActive(false);
             this.Panel = null;
             Pukes.Clear();
             img_Niu = null;

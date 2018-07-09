@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 namespace ETHotfix
 {
+//玩家准备
 	[Message(HotfixOpcode.Actor_GamerReady_Ntt)]
 	[ProtoContract]
 	public partial class Actor_GamerReady_Ntt: IActorMessage
@@ -19,6 +20,61 @@ namespace ETHotfix
 
 	}
 
+//抢庄
+	[Message(HotfixOpcode.Actor_RobBanker_Ntt)]
+	[ProtoContract]
+	public partial class Actor_RobBanker_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public byte BankerNumber;
+
+	}
+
+//下注
+	[Message(HotfixOpcode.Actor_GamerBet_Ntt)]
+	[ProtoContract]
+	public partial class Actor_GamerBet_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public byte BetNumber;
+
+	}
+
+//摊牌
+	[Message(HotfixOpcode.Actor_ShowHandCard_Ntt)]
+	[ProtoContract]
+	public partial class Actor_ShowHandCard_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+	}
+
+//游戏开始
 	[Message(HotfixOpcode.Actor_GamerStart_Ntt)]
 	[ProtoContract]
 	public partial class Actor_GamerStart_Ntt: IActorMessage
@@ -31,6 +87,125 @@ namespace ETHotfix
 
 	}
 
+//开始抢庄
+	[Message(HotfixOpcode.Actor_StartRobBanker_Ntt)]
+	[ProtoContract]
+	public partial class Actor_StartRobBanker_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+	}
+
+//开始发牌
+	[Message(HotfixOpcode.Actor_SendCard_Ntt)]
+	[ProtoContract]
+	public partial class Actor_SendCard_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public byte[] Cards;
+
+	}
+
+//抢庄结果
+	[Message(HotfixOpcode.Actor_RobBankerResult_Ntt)]
+	[ProtoContract]
+	public partial class Actor_RobBankerResult_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public byte BankerNumber;
+
+	}
+
+//指定庄家
+	[Message(HotfixOpcode.Actor_SelectBanker_Ntt)]
+	[ProtoContract]
+	public partial class Actor_SelectBanker_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+	}
+
+//下注结果
+	[Message(HotfixOpcode.Actor_BetResult_Ntt)]
+	[ProtoContract]
+	public partial class Actor_BetResult_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public byte BetNumber;
+
+	}
+
+//开始摊牌
+	[Message(HotfixOpcode.Actor_StartShowHand_Ntt)]
+	[ProtoContract]
+	public partial class Actor_StartShowHand_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+	}
+
+//摊牌结果
+	[Message(HotfixOpcode.Actor_ShowHandResult_Ntt)]
+	[ProtoContract]
+	public partial class Actor_ShowHandResult_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public byte[] Cards;
+
+	}
+
+//退出房间
 	[Message(HotfixOpcode.Actor_GamerExitRoom_Ntt)]
 	[ProtoContract]
 	public partial class Actor_GamerExitRoom_Ntt: IActorMessage
@@ -49,6 +224,7 @@ namespace ETHotfix
 
 	}
 
+//玩家进入房间
 	[Message(HotfixOpcode.Actor_GamerEnterRoom_Ntt)]
 	[ProtoContract]
 	public partial class Actor_GamerEnterRoom_Ntt: IActorMessage
@@ -85,6 +261,7 @@ namespace ETHotfix
 
 	}
 
+//获取用户信息
 	[Message(HotfixOpcode.C2G_GetUserInfo)]
 	[ProtoContract]
 	public partial class C2G_GetUserInfo: IRequest
@@ -97,6 +274,7 @@ namespace ETHotfix
 
 	}
 
+//获取用户信息
 	[Message(HotfixOpcode.G2C_GetUserInfo)]
 	[ProtoContract]
 	public partial class G2C_GetUserInfo: IResponse
@@ -139,6 +317,7 @@ namespace ETHotfix
 
 	}
 
+//创建房间
 	[Message(HotfixOpcode.C2G_CreateRoom)]
 	[ProtoContract]
 	public partial class C2G_CreateRoom: IRequest
@@ -151,6 +330,7 @@ namespace ETHotfix
 
 	}
 
+//创建房间
 	[Message(HotfixOpcode.G2C_CreateRoom)]
 	[ProtoContract]
 	public partial class G2C_CreateRoom: IResponse
@@ -175,6 +355,7 @@ namespace ETHotfix
 
 	}
 
+//加入房间
 	[Message(HotfixOpcode.C2G_JoinRoom)]
 	[ProtoContract]
 	public partial class C2G_JoinRoom: IRequest
@@ -187,6 +368,7 @@ namespace ETHotfix
 
 	}
 
+//加入房间
 	[Message(HotfixOpcode.G2C_JoinRoom)]
 	[ProtoContract]
 	public partial class G2C_JoinRoom: IResponse
@@ -211,6 +393,7 @@ namespace ETHotfix
 
 	}
 
+//返回大厅
 	[Message(HotfixOpcode.C2G_ReturnLobby_Ntt)]
 	[ProtoContract]
 	public partial class C2G_ReturnLobby_Ntt: IMessage

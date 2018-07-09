@@ -27,6 +27,20 @@ namespace ETHotfix
             }
             GameData.MySelf = user;
         }
+        /// <summary>
+        /// 隐藏所有的庄
+        /// </summary>
+        public static void HideAllImg_Banker(this GameDataComponent GameData)
+        {
+            GameData.MySelf.GetComponent<GamerUIComponent>().HideRobBanker();
+
+            foreach (KeyValuePair<ushort, Gamer> keyValuePair in GameData.UserInfos)
+            {
+                keyValuePair.Value.GetComponent<GamerUIComponent>().HideRobBanker();
+            }
+        }
+
+        
 
         /// <summary>
         /// 是否存在此玩家信息
@@ -38,7 +52,24 @@ namespace ETHotfix
         {
             return GameData.UserInfos.ContainsKey(wChairId);
         }
-        
+
+        /// <summary>
+        /// 得到玩家信息
+        /// </summary>
+        /// <param name="GameData"></param>
+        /// <param name="wChairId"></param>
+        /// <returns></returns>
+        public static Gamer GetUser(this GameDataComponent GameData, ushort wChairId)
+        {
+            if (!GameData.UserInfos.ContainsKey(wChairId))
+            {
+                Log.Error($"Not Find This Key !!!!  ------- {wChairId} -----------");
+                return null;
+            }
+
+            return GameData.UserInfos[wChairId];
+        }
+
 
         /// <summary>
         /// 添加玩家信息

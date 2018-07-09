@@ -68,6 +68,48 @@ namespace ETHotfix
 
 
             btn_Ready.onClick.AddListener(OnReady);
+            for (int i = 0; i < this.RobButtons.Count; i++)
+            {
+                int index = i + 1;
+                //如果是不抢
+                if (index == 5)
+                {
+                    index = 0;
+                }
+                RobButtons[i].onClick.AddListener(delegate
+                {
+                    Log.Error($"抢庄倍数；{index}");
+                    SessionComponent.Instance.Session.Call(new Actor_RobBanker_Ntt()
+                    {
+                        ChairId = GameTools.GetUser().ChairId,
+                        BankerNumber = (byte)index
+                    });
+                    this.HideRob();
+                });
+            }
+
+
+            for (int i = 0; i < this.AddRobButtons.Count; i++)
+            {
+                int index = i + 1;
+                Log.Error($"下注倍数；{index}");
+                AddRobButtons[i].onClick.AddListener(delegate
+                {
+                    SessionComponent.Instance.Session.Call(new Actor_GamerBet_Ntt()
+                    {
+                        ChairId = GameTools.GetUser().ChairId,
+                        BetNumber = (byte)index
+                    });
+                    this.HideAddRob();
+                });
+            }
+
+
+            btn_Tanpai.onClick.AddListener(delegate
+            {
+                SessionComponent.Instance.Session.Call(new Actor_ShowHandCard_Ntt(){ChairId = GameTools.GetUser().ChairId});
+                HideTanpai();
+            });
         }
 
         /// <summary>
@@ -130,7 +172,7 @@ namespace ETHotfix
         {
             this.RobPanel.SetActive(false);
         }
-
+        //显示下注
         public void ShowAddRob()
         {
             this.AddRobPanel.SetActive(true);
@@ -148,6 +190,15 @@ namespace ETHotfix
                 return;
             }
             base.Dispose();
+            foreach (Button addRobButton in this.AddRobButtons)
+            {
+                addRobButton.onClick.RemoveAllListeners();
+            }
+
+            foreach (Button robButton in this.RobButtons)
+            {
+                robButton.onClick.RemoveAllListeners();
+            }
             RobButtons.Clear();
             AddRobButtons.Clear();
             Panel.SetActive(false);

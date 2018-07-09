@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using ETModel;
 
@@ -77,8 +78,33 @@ namespace ETHotfix
             {
                 return;
             }
-            room.gamers[room.Count] = gamer;
-            room.seats.Add(gamer.UserID, (ushort)room.Count);
+            for (ushort i = 0; i < room.gamers.Length; i++)
+            {
+                if (room.gamers[i]==null)
+                {
+                    room.gamers[i] = gamer;
+                    gamer.uChairID = i;
+                    room.seats.Add(gamer.UserID, i);
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// 得到一个空位
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns></returns>
+        public static ushort GetNullChair(this Room room)
+        {
+            for (ushort i = 0; i < room.gamers.Length; i++)
+            {
+                if (room.gamers[i]==null)
+                {
+                    return i;
+                }
+            }
+            Log.Error($"未找到空位！！！");
+            return 0;
         }
 
         /// <summary>
