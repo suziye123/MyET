@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -9,13 +10,17 @@ using System.Threading.Tasks;
 namespace ETModel
 {
 	[ObjectSystem]
+
 	public class SessionAwakeSystem : AwakeSystem<Session, AChannel>
 	{
+
 		public override void Awake(Session self, AChannel b)
 		{
+
 			self.Awake(b);
 		}
 	}
+
 
 	public sealed class Session : Entity
 	{
@@ -49,6 +54,7 @@ namespace ETModel
 			
 			this.channel.Start();
 		}
+
 		public override void Dispose()
 		{
 			if (this.IsDisposed)
@@ -64,7 +70,13 @@ namespace ETModel
 			{
 				action.Invoke(new ResponseMessage { Error = this.Error });
 			}
+
 			
+			if (this.Error != 0)
+			{
+				Log.Error($"session dispose: {this.Id} {this.Error}");
+			}
+
 			this.Error = 0;
 			this.channel.Dispose();
 			this.Network.Remove(id);
@@ -87,10 +99,12 @@ namespace ETModel
 			}
 		}
 
+
 		public void OnRead(Packet packet)
 		{
 			try
 			{
+				
 				this.Run(packet);
 			}
 			catch (Exception e)
@@ -101,6 +115,7 @@ namespace ETModel
 
 		private void Run(Packet packet)
 		{
+			
 			byte flag = packet.Flag;
 			ushort opcode = packet.Opcode;
 			
@@ -118,13 +133,14 @@ namespace ETModel
 				this.Network.MessageDispatcher.Dispatch(this, packet);
 				return;
 			}
+			
 
 			object message;
 			try
 			{
 				OpcodeTypeComponent opcodeTypeComponent = this.Network.Entity.GetComponent<OpcodeTypeComponent>();
 				Type responseType = opcodeTypeComponent.GetType(opcode);
-				message = this.Network.MessagePacker.DeserializeFrom(responseType, packet.Bytes, packet.Offset, packet.Length);
+				message = this.Network.MessagePacker.DeserializeFrom(responseType, packet.Stream);
 				//Log.Debug($"recv: {JsonHelper.ToJson(message)}");
 			}
 			catch (Exception e)
@@ -160,6 +176,7 @@ namespace ETModel
 			{
 				try
 				{
+
 					if (ErrorCode.IsRpcNeedThrowException(response.Error))
 					{
 						throw new RpcException(response.Error, response.Message);
@@ -187,6 +204,7 @@ namespace ETModel
 			{
 				try
 				{
+
 					if (ErrorCode.IsRpcNeedThrowException(response.Error))
 					{
 						throw new RpcException(response.Error, response.Message);
@@ -246,15 +264,14 @@ namespace ETModel
 			if (this.Network.AppType == AppType.AllServer)
 			{
 				Session session = this.Network.Entity.GetComponent<NetInnerComponent>().Get(this.RemoteAddress);
-
+				
 				Packet packet = ((TChannel)this.channel).parser.packet;
 
-				Array.Copy(bytes, 0, packet.Bytes, 0, bytes.Length);
-
-				packet.Offset = 0;
-				packet.Length = (ushort)bytes.Length;
 				packet.Flag = flag;
 				packet.Opcode = opcode;
+				packet.Stream.Seek(0, SeekOrigin.Begin);
+				packet.Stream.SetLength(bytes.Length);
+				Array.Copy(bytes, 0, packet.Bytes, 0, bytes.Length);
 				session.Run(packet);
 				return;
 			}
@@ -262,5 +279,6 @@ namespace ETModel
 
 			channel.Send(this.byteses);
 		}
+
 	}
 }

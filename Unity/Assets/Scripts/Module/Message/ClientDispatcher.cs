@@ -6,9 +6,11 @@ namespace ETModel
 	{
 		public void Dispatch(Session session, Packet packet)
 		{
+
 			object message;
 			try
 			{
+				
 				if (OpcodeHelper.IsClientHotfixMessage(packet.Opcode))
 				{
 					session.GetComponent<SessionCallbackComponent>().MessageCallback.Invoke(session, packet);
@@ -17,7 +19,7 @@ namespace ETModel
 
 				OpcodeTypeComponent opcodeTypeComponent = session.Network.Entity.GetComponent<OpcodeTypeComponent>();
 				Type responseType = opcodeTypeComponent.GetType(packet.Opcode);
-				message = session.Network.MessagePacker.DeserializeFrom(responseType, packet.Bytes, packet.Offset, packet.Length);
+				message = session.Network.MessagePacker.DeserializeFrom(responseType, packet.Stream);
 			}
 			catch (Exception e)
 			{
@@ -27,6 +29,7 @@ namespace ETModel
 				session.Network.Remove(session.Id);
 				return;
 			}
+
 				
 			// 如果是帧同步消息,交给ClientFrameComponent处理
 			FrameMessage frameMessage = message as FrameMessage;
@@ -37,6 +40,7 @@ namespace ETModel
 			}
 
 			// 普通消息或者是Rpc请求消息
+
 			MessageInfo messageInfo = new MessageInfo(packet.Opcode, message);
 			Game.Scene.GetComponent<MessageDispatherComponent>().Handle(session, messageInfo);
 		}

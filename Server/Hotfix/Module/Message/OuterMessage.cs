@@ -210,11 +210,12 @@ namespace ETHotfix
 		public string Message { get; set; }
 
 	}
-
+	
 	[Message(OuterOpcode.G2C_Test)]
 	[ProtoContract]
 	public partial class G2C_Test: IMessage
 	{
 	}
+
 
 }

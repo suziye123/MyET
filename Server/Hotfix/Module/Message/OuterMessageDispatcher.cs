@@ -7,11 +7,12 @@ namespace ETHotfix
 	{
 		public async void Dispatch(Session session, Packet packet)
 		{
+
 			object message;
 			try
 			{
 				Type messageType = session.Network.Entity.GetComponent<OpcodeTypeComponent>().GetType(packet.Opcode);
-				message = session.Network.MessagePacker.DeserializeFrom(messageType, packet.Bytes, packet.Offset, packet.Length);
+				message = session.Network.MessagePacker.DeserializeFrom(messageType, packet.Stream);
 				
 			}
 			catch (Exception e)
@@ -29,14 +30,16 @@ namespace ETHotfix
 			{
 				case IFrameMessage iFrameMessage: // 如果是帧消息，构造成OneFrameMessage发给对应的unit
 				{
-				    long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
-                    ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
+					
+					long unitId = session.GetComponent<SessionPlayerComponent>().Player.UnitId;
+					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 	
 					// 这里设置了帧消息的id，防止客户端伪造
 					iFrameMessage.Id = unitId;
 	
 					OneFrameMessage oneFrameMessage = new OneFrameMessage
 					{
+						
 						Op = packet.Opcode,
 						AMessage = session.Network.MessagePacker.SerializeToByteArray(iFrameMessage)
 					};
@@ -45,6 +48,7 @@ namespace ETHotfix
 				}
 				case IActorRequest iActorRequest: // gate session收到actor rpc消息，先向actor 发送rpc请求，再将请求结果返回客户端
 				{
+					
 					long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
 					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 	
@@ -57,12 +61,14 @@ namespace ETHotfix
 				}
 				case IActorMessage iActorMessage: // gate session收到actor消息直接转发给actor自己去处理
 				{
+					
 					long unitId = session.GetComponent<SessionUserComponent>().User.ActorID;
 					ActorMessageSender actorMessageSender = Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(unitId);
 					actorMessageSender.Send(iActorMessage);
 					return;
 				}
 			}
+
 	
 			Game.Scene.GetComponent<MessageDispatherComponent>().Handle(session, new MessageInfo(packet.Opcode, message));
 		}

@@ -20,7 +20,6 @@ namespace ETHotfix
                 ushort ChairId = deck.GetBanker();
                 room.Broadcast(new Actor_RobBankerResult_Ntt() { ChairId = message.ChairId, BankerNumber = message.BankerNumber });
                 room.Broadcast(new Actor_SelectBanker_Ntt() { ChairId = ChairId });
-                room.Broadcast();
             }
             else
             {

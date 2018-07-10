@@ -24,5 +24,6 @@
 	    {
 	        return Game.Scene.GetComponent<ActorMessageSenderComponent>().Get(this.GateSessionActorId);
 	    }
+
     }
 }

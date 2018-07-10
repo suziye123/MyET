@@ -7,11 +7,12 @@ namespace ETHotfix
 	{
 		public void Dispatch(Session session, Packet packet)
 		{
+			
 			IMessage message;
 			try
 			{
 				Type messageType = Game.Scene.GetComponent<OpcodeTypeComponent>().GetType(packet.Opcode);
-				message = (IMessage)session.Network.MessagePacker.DeserializeFrom(messageType, packet.Bytes, packet.Offset, packet.Length);
+				message = (IMessage)session.Network.MessagePacker.DeserializeFrom(messageType, packet.Stream);
 			}
 			catch (Exception e)
 			{
@@ -44,10 +45,12 @@ namespace ETHotfix
 				{
 					ActorResponse response = new ActorResponse
 					{
+						
 						Error = ErrorCode.ERR_ActorNoMailBoxComponent,
 						RpcId = iActorMessage.RpcId
 					};
 					session.Reply(response);
+					
 					Log.Error($"actor没有挂载MailBoxComponent组件: {entity.GetType().Name} {entity.Id}");
 					return;
 				}
