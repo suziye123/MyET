@@ -34,31 +34,75 @@ namespace ETHotfix
         {
             Room room = self.GetParent<Room>();
             Gamer[] gamers = room.GetAll();
-
-            if (room.Count==self.Config.PlayerCount&&gamers.Count(model => model.IsReady)==self.Config.PlayerCount)
+            if (room.State==RoomState.Game)
             {
-                //所有玩家准备！！
-                //发送游戏开始
-                room.Broadcast(new Actor_GamerStart_Ntt());
-
-                await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
-
-                self.DealCards();
-
-                foreach (var _gamer in gamers)
+                DeckComponent deck =room.GetComponent<DeckComponent>();
+                Log.Info($"当前准备的玩家个数:{deck.XJReady}");
+                if (deck.XJReady==self.Config.PlayerCount)
                 {
-                    ActorMessageSender actorProxy = _gamer.GetComponent<UnitGateComponent>().GetActorMessageSender();
-                    actorProxy.Send(new Actor_SendCard_Ntt()
+                   Log.Info("重新开始游戏");
+                    //重置庄
+                    foreach (Gamer gamer in gamers)
                     {
-                        Cards = _gamer.GetComponent<HandCardsComponent>().GetAll()
-                    });
-                    Log.Info($"{_gamer.UserID}手牌:{_gamer.GetComponent<HandCardsComponent>().ShowAllCard()}");
+                        gamer.IsRobBanker = false;
+                        gamer.GetComponent<HandCardsComponent>().Reset();
+                    }
+
+                    //重新洗牌
+                    self.DealCards();
+
+                    //清理缓存数据
+                    deck.Reset();
+
+                    //发送游戏开始
+                    room.Broadcast(new Actor_GamerStart_Ntt());
+
+                    await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
+                    //发送手牌
+                    foreach (var _gamer in gamers)
+                    {
+                        ActorMessageSender actorProxy = _gamer.GetComponent<UnitGateComponent>().GetActorMessageSender();
+                        actorProxy.Send(new Actor_SendCard_Ntt()
+                        {
+                            Cards = _gamer.GetComponent<HandCardsComponent>().GetAll()
+                        });
+                        Log.Info($"{_gamer.UserID}手牌:{_gamer.GetComponent<HandCardsComponent>().ShowAllCard()}");
+                    }
+
+                    await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
+
+                }
+            }
+            if (room.State==RoomState.Idle)
+            {
+                if (room.Count == self.Config.PlayerCount && gamers.Count(model => model.IsReady) == self.Config.PlayerCount)
+                {
+                    room.State = RoomState.Game;
+                    //所有玩家准备！！
+                    //发送游戏开始
+                    room.Broadcast(new Actor_GamerStart_Ntt());
+
+                    await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
+
+                    self.DealCards();
+
+                    foreach (var _gamer in gamers)
+                    {
+                        ActorMessageSender actorProxy = _gamer.GetComponent<UnitGateComponent>().GetActorMessageSender();
+                        actorProxy.Send(new Actor_SendCard_Ntt()
+                        {
+                            Cards = _gamer.GetComponent<HandCardsComponent>().GetAll()
+                        });
+                        Log.Info($"{_gamer.UserID}手牌:{_gamer.GetComponent<HandCardsComponent>().ShowAllCard()}");
+                    }
+
+                    await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
+
+                    Log.Info("可以开始出牌了");
                 }
 
-                await Game.Scene.GetComponent<TimerComponent>().WaitAsync(1000);
-
-                Log.Info("可以开始出牌了");
             }
+            
         }
 
         /// <summary>

@@ -45,6 +45,7 @@ namespace ETHotfix
                 
                 //房间添加玩家
                 room.Add(gamer);
+
                 //网关服务器和玩家对应
                 user.ActorID = gamer.Id;
 

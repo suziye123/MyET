@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -154,7 +155,7 @@ namespace ETModel
                 Connect(timeNow);
                 return;
             }
-
+            
             // 超时断开连接
             if (timeNow - this.lastRecvTime > 40 * 1000)
             {

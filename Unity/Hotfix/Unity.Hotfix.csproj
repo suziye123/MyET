@@ -200,6 +200,7 @@
     <Compile Include="Game\Component\GameDataComponent.cs" />
     <Compile Include="Game\Component\GamerUIComponent.cs" />
     <Compile Include="Game\Component\HandCardComponent.cs" />
+    <Compile Include="Game\Component\HeartBeatComponent.cs" />
     <Compile Include="Game\Component\PlayerOperateComponent.cs" />
     <Compile Include="Game\Component\RoomComponent.cs" />
     <Compile Include="Game\Entity\Gamer.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Game\Handler\Room\Actor_SendCard.cs" />
     <Compile Include="Game\Handler\Room\Actor_ShowHandResult.cs" />
     <Compile Include="Game\Handler\Room\Actor_StartShowHand.cs" />
+    <Compile Include="Game\Handler\Room\Actor_XJGameResult.cs" />
     <Compile Include="Game\Help\AltasHelp.cs" />
     <Compile Include="Game\Help\AltasType.cs" />
     <Compile Include="Game\Help\GameTools.cs" />

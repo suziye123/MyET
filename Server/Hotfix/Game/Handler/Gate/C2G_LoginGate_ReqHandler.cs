@@ -33,6 +33,7 @@ namespace ETHotfix
 
                 //添加User对象关联到Session上
                 session.AddComponent<SessionUserComponent>().User = user;
+                //session.AddComponent<HeartBeatComponent>().CurrentTime = TimeHelper.ClientNowSeconds();
                 //添加消息转发组件
                 await session.AddComponent<MailBoxComponent, string>(ActorType.GateSession).AddLocation();
 

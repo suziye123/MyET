@@ -22,6 +22,38 @@ namespace ETHotfix
         }
 
         /// <summary>
+        /// 重置数据
+        /// </summary>
+        /// <param name="self"></param>
+        public static void Reset(this DeckComponent self)
+        {
+            self.BetDic.Clear();
+            self.RobBankerDic.Clear();
+            self.ShowCardDic.Clear();
+            self.XJReady = 0;
+        }
+
+        /// <summary>
+        /// 数去指定玩家的抢庄倍数
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="ChairId"></param>
+        /// <returns></returns>
+        public static byte GetOrderPlayerBet_RobBanker(this DeckComponent self, ushort ChairId)
+        {
+            return self.RobBankerDic[ChairId];
+        }
+        /// <summary>
+        /// 获取指定玩家的下注数目
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="ChairId"></param>
+        /// <returns></returns>
+        public static byte GetOrderPlayerBet_Bet(this DeckComponent self, ushort ChairId)
+        {
+            return self.BetDic[ChairId];
+        }
+        /// <summary>
         /// 添加抢庄玩家
         /// </summary>
         /// <param name="self"></param>
@@ -29,6 +61,10 @@ namespace ETHotfix
         /// <param name="RobBankerNumber"></param>
         public static void AddRobBankGamer(this DeckComponent self,ushort ChairId,byte RobBankerNumber)
         {
+            if (RobBankerNumber==0)
+            {
+                RobBankerNumber = 1;
+            }
             if (self.RobBankerDic.ContainsKey(ChairId))
             {
                 return;
@@ -81,7 +117,7 @@ namespace ETHotfix
             self.ShowCardDic.Clear();
         }
         /// <summary>
-        /// 获取装
+        /// 获取庄
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>

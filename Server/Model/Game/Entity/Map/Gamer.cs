@@ -44,6 +44,20 @@ namespace ETModel
         public bool isOffline { get; set; }
 
         /// <summary>
+        /// 是否是庄
+        /// </summary>
+        public bool IsRobBanker { get; set; }
+
+        /// <summary>
+        /// 倍数
+        /// </summary>
+        public int AllMultiple { get; set; }
+        /// <summary>
+        /// 单局得分
+        /// </summary>
+        public int SingleMultiple { get; set; }
+
+        /// <summary>
         /// 玩家的椅子号
         /// </summary>
         public ushort uChairID { get; set; }
@@ -66,9 +80,10 @@ namespace ETModel
             this.PlayerID = 0;
             this.RoomID = 0;
             this.uChairID = 0;
-
+            AllMultiple = 0;
             this.IsReady = false;
             this.isOffline = false;
+            IsRobBanker = false;
         }
     }
 }

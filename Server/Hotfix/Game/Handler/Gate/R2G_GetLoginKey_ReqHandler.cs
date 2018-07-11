@@ -14,6 +14,9 @@ namespace ETHotfix
                 long key = RandomHelper.RandInt64();
                 Game.Scene.GetComponent<GameGateSessionKeyComponent>().Add(key, message.UserID);
                 response.Key = key;
+
+                //添加心跳组件
+
                 reply(response);
             }
             catch (Exception e)

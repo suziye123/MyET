@@ -203,6 +203,39 @@ namespace ETHotfix
 		[ProtoMember(2, IsRequired = true)]
 		public byte[] Cards;
 
+		[ProtoMember(3, IsRequired = true)]
+		public byte CardType;
+
+	}
+
+	[Message(HotfixOpcode.Actor_XJGameResult_Ntt)]
+	[ProtoContract]
+	public partial class Actor_XJGameResult_Ntt: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public List<XJResultInfo> XJResult = new List<XJResultInfo>();
+
+	}
+
+	[Message(HotfixOpcode.XJResultInfo)]
+	[ProtoContract]
+	public partial class XJResultInfo
+	{
+		[ProtoMember(1, IsRequired = true)]
+		public ushort ChairId;
+
+		[ProtoMember(2, IsRequired = true)]
+		public int XJScore;
+
+		[ProtoMember(3, IsRequired = true)]
+		public int AllScore;
+
 	}
 
 //退出房间
@@ -258,6 +291,30 @@ namespace ETHotfix
 
 		[ProtoMember(5, IsRequired = true)]
 		public ushort ChairID;
+
+	}
+
+	[Message(HotfixOpcode.C2G_HeartBeat)]
+	[ProtoContract]
+	public partial class C2G_HeartBeat: IRequest
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(HotfixOpcode.G2C_HeartBeat)]
+	[ProtoContract]
+	public partial class G2C_HeartBeat: IResponse
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
+		public string Message { get; set; }
 
 	}
 

@@ -67,6 +67,17 @@ message Actor_ShowHandResult_Ntt // IActorMessage
 {
 	required ushort ChairId = 1;
 	required byte[] Cards = 2;
+	required byte CardType = 3;
+}
+message Actor_XJGameResult_Ntt // IActorMessage
+{
+	repeated XJResultInfo XJResult = 1;
+}
+message XJResultInfo
+{
+	required ushort ChairId = 1;
+	required int XJScore = 2;
+	required int AllScore = 3;
 }
 //退出房间
 message Actor_GamerExitRoom_Ntt // IActorMessage
@@ -86,6 +97,17 @@ message GamerInfo
     required int Loses = 3;
     required long Money = 4;
     required ushort ChairID = 5;
+}
+#endregion
+
+#region Heart
+message C2G_HeartBeat // IRequest
+{
+
+}
+message G2C_HeartBeat // IResponse
+{
+
 }
 #endregion
 #region Lobby

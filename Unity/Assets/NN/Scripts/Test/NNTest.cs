@@ -6,7 +6,7 @@ using UnityEngine;
 public class NNTest : MonoBehaviour {
 
     [SerializeField]
-    public byte[] Cards = new byte[]{13,12,1,5,4};
+    public byte[] Cards = new byte[]{33,12,41,54,3};
 
 	// Use this for initialization
 	void Start ()
@@ -15,14 +15,22 @@ public class NNTest : MonoBehaviour {
 
 	}
 
-    public byte GetValue(byte Value)
+    /// <summary>
+    /// 得到卡片的值
+    /// </summary>
+    /// <param name="Value"></param>
+    /// <returns></returns>
+    private static byte GetCardValue(byte Value)
     {
-        byte temp = Value;
-        if (temp > 10)
+        byte MASK_COLOR = 0xF0;
+        byte MASK_VALUE = 0x0F;
+        byte bColor = (byte)((Value & MASK_COLOR) >> 4);
+        byte bValue = (byte)(Value & MASK_VALUE);
+        if (bValue > 10)
         {
-            temp = 10;
+            bValue = 10;
         }
-        return temp;
+        return bValue;
     }
 
     public void jisuan(byte[] Cards)
@@ -32,13 +40,25 @@ public class NNTest : MonoBehaviour {
         int NiuNumber = -1;
         for (int i = 0; i <= 2; i++)
         {
+            if (IsHaveNiu)
+            {
+                break;
+            }
             for (int j = i+1; j <= 3; j++)
             {
+                if (IsHaveNiu)
+                {
+                    break;
+                }
                 for (int k = j+1; k <= 4; k++)
                 {
-                    int NumberA = GetValue(Cards[i]);
-                    int NumberB = GetValue(Cards[j]);
-                    int NumberC = GetValue(Cards[k]);
+                    if (IsHaveNiu)
+                    {
+                        break;
+                    }
+                    int NumberA = GetCardValue(Cards[i]);
+                    int NumberB = GetCardValue(Cards[j]);
+                    int NumberC = GetCardValue(Cards[k]);
                     int Numbers = NumberA + NumberB + NumberC;
                     if (Numbers%10==0)
                     {
@@ -48,7 +68,7 @@ public class NNTest : MonoBehaviour {
                         {
                             if (l!=i&&l!=j&&l!=k)
                             {
-                                RemainNumber += GetValue(Cards[l]);
+                                RemainNumber += GetCardValue(Cards[l]);
                             }
                         }
 

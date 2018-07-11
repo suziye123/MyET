@@ -49,6 +49,15 @@ namespace ETHotfix
         public Text txt_XiaZhu { get; set; }
 
         /// <summary>
+        /// 游戏重置
+        /// </summary>
+        public void Reset()
+        {
+            this.HideBanker();
+            this.HideGoldBg();
+        }
+
+        /// <summary>
         /// 更新视图信息
         /// </summary>
         public void UpdateView()
@@ -166,7 +175,10 @@ namespace ETHotfix
                 return;
             }
             base.Dispose();
-            Panel.gameObject.SetActive(false);
+            if (this.Panel!=null)
+            {
+               Panel.gameObject.SetActive(false);
+            }
             img_Head = null;
             img_Rob = null;
             img_Zhuang = null;

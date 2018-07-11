@@ -30,8 +30,8 @@ namespace ETHotfix
 
 
         public void Awake()
-		{
-			ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+        {
+            ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 		    txt_MoneySetting = rc.GetComponent<Text>("txt_MoneySetting");
 		    txt_NameSetting = rc.GetComponent<Text>("txt_NameSetting");
 		    txt_JoinRoomState = rc.GetComponent<Text>("txt_JoinRoomState");
@@ -43,7 +43,8 @@ namespace ETHotfix
 		    btn_Return = rc.GetComponent<Button>("btn_Return");
 
 		    InputField_RoomId = rc.GetComponent<InputField>("InputField_RoomId");
-		    GetUserInfo();
+
+            GetUserInfo();
             btn_CreateRoom.onClick.AddListener(this.OnCreateRoom);
 		    btn_JoinSure.onClick.AddListener(this.OnJoinRoom);
         }

@@ -14,11 +14,17 @@ namespace ETHotfix
             gamer.IsReady = true;
 
             Room room = RoomHelp.GetRoom(gamer.RoomID);
-
             Actor_GamerReady_Ntt transpond = new Actor_GamerReady_Ntt();
             transpond.ChairId = gamer.uChairID;
             room.Broadcast(transpond);
             Log.Info($"玩家{gamer.uChairID}准备");
+            if (room.State==RoomState.Game)
+            {
+                room.GetComponent<DeckComponent>().XJReady += 1;
+            }
+
+
+
 
             //检查是否所有玩家准备
             room.GetComponent<GameControllerComponent>().ReadyStartGame();

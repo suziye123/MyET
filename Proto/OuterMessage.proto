@@ -70,3 +70,4 @@ message R2C_Ping // IResponse
 message G2C_Test // IMessage
 {
 }
+

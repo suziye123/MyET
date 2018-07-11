@@ -12,7 +12,18 @@ namespace ETHotfix
     {
         protected override void Run(ETModel.Session session, Actor_ShowHandResult_Ntt message)
         {
-            Log.Debug($"玩家{message.ChairId},摊牌数据:{message.Cards.BytesToString()}");
+            Log.Debug($"玩家{message.ChairId},摊牌数据:{message.Cards.BytesToString()},牌型:{message.CardType}");
+
+            if (GameTools.IsSelf(message.ChairId))
+            {
+                GameTools.GetUser().GetComponent<HandCardComponent>().ShowPuke(message.Cards);
+                GameTools.GetUser().GetComponent<HandCardComponent>().ShowNiuShu(message.CardType);
+            }
+            else
+            {
+                GameTools.GetOtherUser(message.ChairId).GetComponent<HandCardComponent>().ShowPuke(message.Cards);
+                GameTools.GetOtherUser(message.ChairId).GetComponent<HandCardComponent>().ShowNiuShu(message.CardType);
+            }
         }
     }
 }

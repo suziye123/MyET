@@ -17,6 +17,10 @@ namespace ETModel
         public readonly Dictionary<ushort,byte[]> ShowCardDic = new Dictionary<ushort, byte[]>();
         //牌库中的总牌数
         public int CardsCount { get { return this.library.Count; } }
+        /// <summary>
+        /// 小局准备
+        /// </summary>
+        public byte XJReady { get; set; }
 
 
 
@@ -32,6 +36,8 @@ namespace ETModel
             library.Clear();
             RobBankerDic.Clear();
             BetDic.Clear();
+
+            XJReady = 0;
         }
     }
 }

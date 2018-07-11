@@ -24,7 +24,30 @@ namespace ETModel
         /// <summary>
         /// 牌型倍数
         /// </summary>
-        public int CardTypeMultiple { get; set; }
+        public int CardTypeMultiple
+        {
+            get
+            {
+                if (CardType==8||CardType==9)
+                {
+                    return 2;
+                }
+                else if(CardType<=7)
+                {
+                    return 1;
+                }
+                else if (CardType ==10)
+                {
+                    return 3;
+                }
+                return 1;
+            }
+        }
+
+        /// <summary>
+        /// 牌型
+        /// </summary>
+        public byte CardType { get; set; }
 
         /// <summary>
         /// 手牌数
@@ -43,7 +66,7 @@ namespace ETModel
             this.library.Clear();
             IsBanker = false;
             IsTrusteeship = false;
-            CardTypeMultiple = 0;
+            CardType = 0;
         }
     }
 }

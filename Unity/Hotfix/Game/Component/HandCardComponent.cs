@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ETModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,6 +51,17 @@ namespace ETHotfix
             }
         }
 
+        /// <summary>
+        /// 重置
+        /// </summary>
+        public void Reset()
+        {
+            HideNiu();
+            SetActive(false);
+        }
+
+
+
         
         /// <summary>
         /// 显示扑克
@@ -76,11 +88,50 @@ namespace ETHotfix
                 this.Pukes[i].sprite = GameTools.GetBackPuke();
             }
         }
-
-        public void ShowNiuShu()
+        /// <summary>
+        /// 显示牛数
+        /// </summary>
+        /// <param name="CardType"></param>
+        public void ShowNiuShu(byte CardType)
         {
             img_Niu.gameObject.SetActive(true);
             //牛型判断
+            switch (CardType)
+            {
+                case GameLogic.NO_NIU:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_wuniu");
+                    break;
+                case GameLogic.NIU_1:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuyi");
+                    break;
+                case GameLogic.NIU_2:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuer");
+                    break;
+                case GameLogic.NIU_3:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niusan");
+                    break;
+                case GameLogic.NIU_4:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niusi");
+                    break;
+                case GameLogic.NIU_5:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuwu");
+                    break;
+                case GameLogic.NIU_6:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuliu");
+                    break;
+                case GameLogic.NIU_7:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuqi");
+                    break;
+                case GameLogic.NIU_8:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuba");
+                    break;
+                case GameLogic.NIU_9:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niujiu");
+                    break;
+                case GameLogic.NIU_NIU:
+                    img_Niu.sprite = AltasHelp.GetFontAltas().Get<Sprite>("W_niuniu");
+                    break;
+            }
         }
 
 
